@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ECommerceStore.DataAccess;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Microsoft.EntityFrameworkCore;
 
 namespace ECommerceStore.Web
 {
@@ -29,10 +31,13 @@ namespace ECommerceStore.Web
         {
             // Add framework services.
             services.AddMvc();
+            var connectionString = Configuration["connectionStrings:EcommerceStoreConnectionString"];
+            services.AddDbContext<ECommerceStoreDbContext>(o => o.UseSqlServer(connectionString));
+
            
         }
 
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, ECommerceStoreDbContext context)
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
@@ -45,14 +50,16 @@ namespace ECommerceStore.Web
 
             app.UseStaticFiles();
 
+            context.EnsureSeedData();
+
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
                    name: "area",
-                   template: "{area=Admin}/{controller=Home}/{action=Index}/{id?}");
+                   template: "{area}/{controller=Default}/{action=Index}/{id?}");
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{controller=Default}/{action=Index}/{id?}");
             });
         }
     }

@@ -1,4 +1,4 @@
-﻿namespace ECommerceStore.DataAccess
+﻿namespace ECommerceStore.DomainModel.Entities
 {
     public class CartLine
     {

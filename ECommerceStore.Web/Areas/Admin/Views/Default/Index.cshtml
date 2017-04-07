@@ -1,0 +1,16 @@
+﻿@model IEnumerable<Product>
+
+<h1>This is out product list</h1>
+<br />
+@foreach (var product in @Model)
+{
+    <label>ProductId:</label> @product.ProductID
+    <br />
+    <label> Name: </label>@product.Name
+    <br />
+    <label>Description:</label> @product.Description
+    <br />
+    <label>Price:</label> @product.Price
+    <br />
+    <br />
+}

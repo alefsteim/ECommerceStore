@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
 
-namespace ECommerceStore.DataAccess
+namespace ECommerceStore.DomainModel.Entities
 {
     public class Order
     {
  
         public int OrderID { get; set; }
-        public ICollection<CartLine> Lines { get; set; }
+        //public ICollection<CartLine> Lines { get; set; }
         public string UserId { get; set; }
 
         public double TotalSum { get; set; }

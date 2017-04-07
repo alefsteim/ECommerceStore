@@ -1,0 +1,8 @@
+To perform operations on entity framework:
+
+1) Open command window for DataAccess project
+2) Web project should be chosen as a startup
+3) Run a command with a Web project specified in -s(startup-project)
+
+For example:
+dotnet ef database update -s "E:\Projects\Visual Studio\ECommerceStore\ECommerceStore\ECommerceStore.Web"

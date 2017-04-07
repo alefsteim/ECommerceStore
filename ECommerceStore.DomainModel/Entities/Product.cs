@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace ECommerceStore.DataAccess
+namespace ECommerceStore.DomainModel.Entities
 {
     public class Product
     {
@@ -10,7 +10,6 @@ namespace ECommerceStore.DataAccess
 
         public string Description { get; set; }
 
-        [Required]
         public double Price { get; set; }
     }
 }
